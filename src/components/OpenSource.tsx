@@ -14,9 +14,9 @@ export default function OpenSource() {
       <div ref={ref} className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}>
           <p className="mb-4 text-sm uppercase tracking-[0.24em] text-zinc-500 dark:text-white/40">Public GitHub work</p>
-          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white md:text-5xl">Public code and contributions.</h2>
+          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white md:text-5xl">Code you can inspect.</h2>
           <p className="mt-5 text-base leading-7 text-zinc-700 dark:text-white/55">
-            Most client work is private. These public repositories show the same pattern: product surfaces, protocol boundaries, mobile tooling, and automation where correctness matters.
+            Most client work stays private. The repos I can show cover product surfaces, protocol boundaries, mobile tooling, and automation where correctness matters.
           </p>
         </motion.div>
 

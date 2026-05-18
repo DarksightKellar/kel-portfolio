@@ -24,24 +24,24 @@ export type Project = {
 export const profile = {
   name: "Kelvin Lartey",
   initials: "KL",
-  title: "Senior product engineer for complex product systems",
+  title: "Builder for messy product systems",
   email: "kelvinklartey@gmail.com",
   phone: "+44 7944 702 387",
   github: "https://github.com/DarksightKellar",
   linkedin: "https://www.linkedin.com/in/kelvin-lartey-851a6996/",
   positioning:
-    "I debug brittle systems and turn unclear product ideas into shipped, tested software people can trust.",
+    "Give me the rough version: the unclear idea, the brittle workflow, the bug that only appears when it matters. I turn it into shipped software with a debug trail.",
   summary:
-    "I work best when requirements are unclear, systems are brittle, and users still need a dependable product. I turn rough intent into tested flows and keep the code understandable after launch.",
+    "I like the work before it has clean edges: vague product intent, brittle code, late-night production mysteries. I make the shape clear, test the risky parts, and leave the system easier to own.",
   availability:
-    "Open to remote senior/staff engineering roles, contract builds, stabilization work, and product-heavy debugging.",
+    "Remote roles, serious contract builds, stabilization work, product-heavy debugging. If it is messy and important, send it.",
 };
 
 export const quickScanProof = [
-  { label: "Best for", value: "Ambiguous builds + production debugging" },
-  { label: "Proof", value: "100K+ app listing, public protocol repos" },
-  { label: "Delivery", value: "Scope first, test risky parts, ship" },
-  { label: "Available for", value: "Remote senior roles + contract builds" },
+  { label: "Bring me", value: "messy builds, weird bugs, brittle systems" },
+  { label: "You get", value: "shipped software with a debug trail" },
+  { label: "I work by", value: "reproduce, test, cut, ship" },
+  { label: "Open for", value: "remote roles + serious contract builds" },
 ];
 
 export const operatingPrinciples = [
@@ -100,9 +100,9 @@ export const projects: Project[] = [
     description:
       "A decentralized dead man's switch built on Ethereum and Arweave. My work sat across product UX, contract state, permanent storage, and adversarial failure modes.",
     proof: [
-      "Public repos list DarksightKellar among top contributors on the V2 app and contracts.",
+      "I was one of the top contributors on both the V2 app and contracts.",
       "The protocol protects information release through time-delayed, encrypted, on-chain conditions.",
-      "Contributed across frontend flows, contract integration, local development, and reliability work.",
+      "I worked across frontend flows, contract integration, local development, and reliability.",
     ],
     tech: ["TypeScript", "React", "Solidity", "Hardhat", "Ethereum", "Arweave"],
     highlight: "Privacy-critical product with contract-backed behavior",
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     description:
       "Governance software for groups managing shared funds and contract execution. The hard part is making voting, permissions, and execution flows clear enough that users approve the right action.",
     proof: [
-      "decentdao/decent-contracts lists DarksightKellar as a contributor.",
+      "I contributed to Decent's public governance contracts in decentdao/decent-contracts.",
       "Azorius is a Safe Zodiac module framework for modular DAO proposal and voting execution.",
       "Gasless voting documentation shows the product goal: reduce voter friction with shared paymaster funding.",
     ],
@@ -201,7 +201,7 @@ export const projects: Project[] = [
     description:
       "An automation pipeline that ingests Reddit discussions, produces scripts, generates narrated audio, renders captioned videos, and packages the result as a repeatable content system.",
     proof: [
-      "Public GitHub activity shows recent commits to DarksightKellar/post-mortem.",
+      "I build this in public at DarksightKellar/post-mortem.",
       "Locally developed with strict TDD around pipeline stages and media rendering contracts.",
       "Turns a loose, multi-stage content process into a repeatable pipeline with clear stages, tests, and failure points.",
     ],
@@ -248,32 +248,32 @@ export const projects: Project[] = [
 export const openSourceSignals = [
   {
     repo: "sarcophagus-org/sarcophagus-v2-app",
-    note: "Top contributor on the public V2 interface repository for a decentralized Ethereum/Arweave dead man's switch.",
+    note: "I was one of the top contributors on the V2 interface for a decentralized Ethereum/Arweave dead man's switch.",
     href: "https://github.com/sarcophagus-org/sarcophagus-v2-app",
   },
   {
     repo: "sarcophagus-org/sarcophagus-v2-contracts",
-    note: "Top contributor on the public V2 contracts repository: TypeScript deployment/testing plus Solidity contracts.",
+    note: "I was one of the top contributors on the V2 contracts repo: TypeScript deployment/testing plus Solidity contracts.",
     href: "https://github.com/sarcophagus-org/sarcophagus-v2-contracts",
   },
   {
     repo: "decentdao/decent-contracts",
-    note: "Contributor to Azorius / Decent governance contracts for Safe-based composable DAO execution.",
+    note: "I contributed to Azorius / Decent governance contracts for Safe-based composable DAO execution.",
     href: "https://github.com/decentdao/decent-contracts",
   },
   {
     repo: "DarksightKellar/cardano_wallet_sdk",
-    note: "Dart SDK for Flutter apps managing Cardano accounts and blockchain transactions.",
+    note: "I built a Dart SDK for Flutter apps managing Cardano accounts and blockchain transactions.",
     href: "https://github.com/DarksightKellar/cardano_wallet_sdk",
   },
   {
     repo: "DarksightKellar/absinthe_socket",
-    note: "Dart client for GraphQL subscriptions over Absinthe sockets.",
+    note: "I built a Dart client for GraphQL subscriptions over Absinthe sockets.",
     href: "https://github.com/DarksightKellar/absinthe_socket",
   },
   {
     repo: "DarksightKellar/miniapps_proof_of_concept",
-    note: "Flutter container proof-of-concept for loading external mini-app packages.",
+    note: "I prototyped a Flutter container for loading external mini-app packages.",
     href: "https://github.com/DarksightKellar/miniapps_proof_of_concept",
   },
 ];
