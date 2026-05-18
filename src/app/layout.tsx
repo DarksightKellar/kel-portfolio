@@ -26,9 +26,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kelvin Lartey — Senior product engineer for complex product systems",
+  title: "Kelvin Lartey — Senior product engineer for ambiguous builds and brittle systems",
   description:
-    "Kelvin Lartey helps teams turn ambiguous product ideas, brittle workflows, and production bugs into shipped, test-backed software across web, mobile, payments, automation, and protocol systems.",
+    "Kelvin Lartey builds unclear product ideas, debugs brittle systems, and ships tested web, mobile, payments, automation, and protocol software.",
 };
 
 export default function RootLayout({

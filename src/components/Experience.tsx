@@ -13,7 +13,7 @@ export default function Experience() {
       <div className="mx-auto max-w-6xl" ref={ref}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
           <p className="mb-4 text-sm uppercase tracking-[0.24em] text-zinc-500 dark:text-white/40">Experience</p>
-          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white md:text-5xl">Experience across product, contracts, and operations.</h2>
+          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white md:text-5xl">Where I’ve done this.</h2>
         </motion.div>
 
         <div className="mt-14 space-y-6">

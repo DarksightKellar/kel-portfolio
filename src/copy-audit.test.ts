@@ -49,22 +49,22 @@ describe("portfolio copy audit", () => {
     expect(copy).not.toMatch(/not just|not only|not a /i);
   });
 
-  it("keeps quick-scan copy concrete for recruiters and contract clients", () => {
+  it("keeps quick-scan copy sharp for hiring managers and contract clients", () => {
     expect(quickScanProof).toEqual([
-      { label: "Best for", value: "Ambiguous builds + production debugging" },
-      { label: "Proof", value: "100K+ app listing, public protocol repos" },
-      { label: "Delivery", value: "Scope first, test risky parts, ship" },
-      { label: "Available for", value: "Remote senior roles + contract builds" },
+      { label: "Best at", value: "Unclear products, broken systems, rescue" },
+      { label: "Evidence", value: "522 + 254 contributions on V2 repos" },
+      { label: "Work mode", value: "Find the fault line, test it, ship" },
+      { label: "Available for", value: "Remote roles, contracts, stabilization" },
     ]);
   });
 
-  it("keeps the preferred direct-but-sober positioning copy", () => {
+  it("keeps the positioning direct, human, and sober", () => {
     const copy = userFacingDataCopy();
 
-    expect(copy).toMatch(/Senior product engineer for complex product systems/i);
-    expect(copy).toMatch(/I debug brittle systems and turn unclear product ideas/i);
-    expect(copy).toMatch(/Open to remote senior\/staff engineering roles/i);
-    expect(copy).not.toMatch(/Give me the rough version|I'll make it real, make it reliable/i);
+    expect(copy).toMatch(/Senior product engineer for ambiguous builds and brittle systems/i);
+    expect(copy).toMatch(/I build what is still stuck in people's heads/i);
+    expect(copy).toMatch(/Open to remote senior\/staff roles, contract builds, stabilization work, and product-heavy debugging/i);
+    expect(copy).not.toMatch(/10x|rockstar|ninja|wizard|genius|guru/i);
   });
 
   it("labels private or local product evidence honestly without fake public proof", () => {
@@ -97,24 +97,34 @@ describe("portfolio copy audit", () => {
     const contact = readSource("src/components/Contact.tsx");
     const footer = readSource("src/components/Footer.tsx");
 
-    expect(hero).toContain("Turn unclear product ideas into working software.");
-    expect(hero).toContain("Then make it reliable.");
-    expect(hero).toContain("See selected work");
-    expect(hero).not.toMatch(/Give me the rough version|I'll make it real, make it reliable/i);
-    expect(projectsSource).toContain("Selected work with public evidence.");
-    expect(openSource).toContain("Public code and contributions.");
-    expect(openSource).toContain("The repos I can show cover product surfaces");
+    expect(hero).toContain("Bring me the thing that still lives in your head.");
+    expect(hero).toContain("I’ll turn it into working software, then make it reliable.");
+    expect(hero).toContain("Talk through the rough version");
+    expect(projectsSource).toContain("Work that had to hold.");
+    expect(openSource).toContain("Code you can inspect.");
+    expect(openSource).toContain("The public trail is partial, but the useful parts are inspectable");
     expect(openSource).not.toMatch(/uneven|not just private work|public repositories show/i);
-    expect(experience).toContain("Experience across product, contracts, and operations.");
-    expect(contact).toContain("Start with the rough version.");
-    expect(footer).toContain("Built as a static Next.js portfolio with test coverage.");
+    expect(experience).toContain("Where I’ve done this.");
+    expect(contact).toContain("Send the messy version.");
+    expect(footer).toContain("Static Next.js portfolio. Tested because the words matter too.");
+  });
+
+  it("adds a fast-fit section for the situations Kelvin is unusually useful in", () => {
+    const page = readSource("src/app/page.tsx");
+    const fit = readSource("src/components/FitHighlights.tsx");
+
+    expect(page).toContain("<FitHighlights />");
+    expect(fit).toContain("When I’m the right person");
+    expect(fit).toContain("A product is still mostly in someone’s head");
+    expect(fit).toContain("A bug is real, expensive, and hard to reproduce");
+    expect(fit).toContain("A workflow has grown around spreadsheets, Slack threads, and tribal knowledge");
   });
 
   it("keeps metadata concrete and searchable", () => {
     const layout = readSource("src/app/layout.tsx");
 
-    expect(layout).toContain("Kelvin Lartey — Senior product engineer for complex product systems");
-    expect(layout).toContain("web, mobile, payments, automation, and protocol systems");
-    expect(layout).not.toMatch(/hard, ambiguous systems|tests-first rigor|builder for messy product systems/i);
+    expect(layout).toContain("Kelvin Lartey — Senior product engineer for ambiguous builds and brittle systems");
+    expect(layout).toContain("builds unclear product ideas, debugs brittle systems, and ships tested web, mobile, payments, automation, and protocol software");
+    expect(layout).not.toMatch(/10x|rockstar|ninja|wizard|guru/i);
   });
 });

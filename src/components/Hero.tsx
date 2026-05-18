@@ -18,8 +18,8 @@ export default function Hero() {
           </p>
 
           <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-zinc-950 dark:text-white md:text-7xl lg:text-8xl">
-            Turn unclear product ideas into working software.
-            <span className="block text-zinc-500 dark:text-white/35">Then make it reliable.</span>
+            Bring me the thing that still lives in your head.
+            <span className="block text-zinc-500 dark:text-white/35">I’ll turn it into working software, then make it reliable.</span>
           </h1>
 
           <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700 dark:text-white/65 md:text-xl">
@@ -34,13 +34,13 @@ export default function Hero() {
               className="inline-flex items-center justify-center gap-2 rounded-full bg-zinc-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-white/90"
             >
               <Mail size={17} />
-              Discuss a role or project
+              Talk through the rough version
             </a>
             <a
               href="#projects"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-zinc-300 bg-white/70 px-6 py-3 text-sm font-semibold text-zinc-900 transition hover:border-zinc-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-white/25"
             >
-              See selected work
+              See work that held
               <ArrowDown size={16} />
             </a>
           </div>

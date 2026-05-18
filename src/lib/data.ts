@@ -24,24 +24,24 @@ export type Project = {
 export const profile = {
   name: "Kelvin Lartey",
   initials: "KL",
-  title: "Senior product engineer for complex product systems",
+  title: "Senior product engineer for ambiguous builds and brittle systems",
   email: "kelvinklartey@gmail.com",
   phone: "+44 7944 702 387",
   github: "https://github.com/DarksightKellar",
   linkedin: "https://www.linkedin.com/in/kelvin-lartey-851a6996/",
   positioning:
-    "I debug brittle systems and turn unclear product ideas into shipped, tested software people can trust.",
+    "I build what is still stuck in people's heads: unclear product ideas, workflows nobody has modeled, and shipped bugs nobody can debug yet.",
   summary:
-    "I work best when requirements are unclear, systems are brittle, and users still need a dependable product. I turn rough intent into tested flows and keep the code understandable after launch.",
+    "Then I make it real enough to use, tested enough to trust, and clear enough for the next person to change without guessing.",
   availability:
-    "Open to remote senior/staff engineering roles, contract builds, stabilization work, and product-heavy debugging.",
+    "Open to remote senior/staff roles, contract builds, stabilization work, and product-heavy debugging.",
 };
 
 export const quickScanProof = [
-  { label: "Best for", value: "Ambiguous builds + production debugging" },
-  { label: "Proof", value: "100K+ app listing, public protocol repos" },
-  { label: "Delivery", value: "Scope first, test risky parts, ship" },
-  { label: "Available for", value: "Remote senior roles + contract builds" },
+  { label: "Best at", value: "Unclear products, broken systems, rescue" },
+  { label: "Evidence", value: "522 + 254 contributions on V2 repos" },
+  { label: "Work mode", value: "Find the fault line, test it, ship" },
+  { label: "Available for", value: "Remote roles, contracts, stabilization" },
 ];
 
 export const operatingPrinciples = [
@@ -100,9 +100,9 @@ export const projects: Project[] = [
     description:
       "A decentralized dead man's switch built on Ethereum and Arweave. My work sat across product UX, contract state, permanent storage, and adversarial failure modes.",
     proof: [
-      "I was one of the top contributors on both the V2 app and contracts.",
+      "I was one of the top contributors: GitHub lists me with 522 contributions on the V2 app and 254 on the V2 contracts repo.",
       "The protocol protects information release through time-delayed, encrypted, on-chain conditions.",
-      "I worked across frontend flows, contract integration, local development, and reliability.",
+      "I worked across frontend flows, contract integration, local development, and reliability paths where wrong behavior matters.",
     ],
     tech: ["TypeScript", "React", "Solidity", "Hardhat", "Ethereum", "Arweave"],
     highlight: "Privacy-critical product with contract-backed behavior",
@@ -240,7 +240,7 @@ export const projects: Project[] = [
     ],
     tech: ["Next.js 16", "TypeScript", "Chakra UI", "Supabase", "Stripe", "Framer Motion"],
     highlight: "Production-minded e-commerce for a real small business",
-    evidence: [{ label: "GitHub repo", href: "https://github.com/DarksightKellar/vienne-dresses" }],
+    evidence: [{ label: "Private repo - walkthrough available", href: "https://github.com/DarksightKellar" }],
     cover: { from: "#3f1d2d", to: "#7f1d1d", accent: "#f9a8d4", shape: "atelier" },
   },
 ];
@@ -248,12 +248,12 @@ export const projects: Project[] = [
 export const openSourceSignals = [
   {
     repo: "sarcophagus-org/sarcophagus-v2-app",
-    note: "I was one of the top contributors on the V2 interface for a decentralized Ethereum/Arweave dead man's switch.",
+    note: "I was one of the top contributors on the V2 interface; GitHub lists me with 522 contributions across a decentralized Ethereum/Arweave dead man's switch.",
     href: "https://github.com/sarcophagus-org/sarcophagus-v2-app",
   },
   {
     repo: "sarcophagus-org/sarcophagus-v2-contracts",
-    note: "I was one of the top contributors on the V2 contracts repo: TypeScript deployment/testing plus Solidity contracts.",
+    note: "I was one of the top contributors on the V2 contracts repo; GitHub lists me with 254 contributions across TypeScript deployment/testing and Solidity contracts.",
     href: "https://github.com/sarcophagus-org/sarcophagus-v2-contracts",
   },
   {
@@ -263,12 +263,12 @@ export const openSourceSignals = [
   },
   {
     repo: "DarksightKellar/cardano_wallet_sdk",
-    note: "I built a Dart SDK for Flutter apps managing Cardano accounts and blockchain transactions.",
+    note: "I contributed to a Dart SDK fork for Flutter apps managing Cardano accounts and blockchain transactions.",
     href: "https://github.com/DarksightKellar/cardano_wallet_sdk",
   },
   {
     repo: "DarksightKellar/absinthe_socket",
-    note: "I built a Dart client for GraphQL subscriptions over Absinthe sockets.",
+    note: "I contributed to a Dart client fork for GraphQL subscriptions over Absinthe sockets.",
     href: "https://github.com/DarksightKellar/absinthe_socket",
   },
   {
