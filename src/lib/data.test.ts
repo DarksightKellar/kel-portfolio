@@ -46,6 +46,15 @@ describe("portfolio positioning data", () => {
     }
   });
 
+  it("surfaces Clinic-MS as a serious private operations system, not a generic dashboard", () => {
+    const clinicMs = projects.find((project) => project.slug === "clinic-ms");
+
+    expect(clinicMs).toBeDefined();
+    expect(clinicMs?.description).toMatch(/clinic|patient|operations/i);
+    expect(clinicMs?.tech).toEqual(expect.arrayContaining(["Next.js 16", "Supabase", "RLS", "Vitest"]));
+    expect(`${clinicMs?.description} ${clinicMs?.proof.join(" ")}`).toMatch(/change request|Copilot|Sentry|migration|RLS/i);
+  });
+
   it("surfaces GitHub contribution signals beyond personal demo projects", () => {
     expect(openSourceSignals.map((signal) => signal.repo)).toEqual(
       expect.arrayContaining([

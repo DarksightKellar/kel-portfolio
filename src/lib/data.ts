@@ -177,6 +177,23 @@ export const projects: Project[] = [
     cover: { from: "#422006", to: "#854d0e", accent: "#facc15", shape: "ledger" },
   },
   {
+    title: "Clinic-MS",
+    slug: "clinic-ms",
+    role: "Product engineer for clinical operations",
+    kind: "client",
+    description:
+      "A private clinic management system for the operational middle of care: patient records, appointments, consultation flow, queues, dispensary, finance, surgery, reports, staff roles, and patient-facing portal work.",
+    proof: [
+      "Cloned codebase shows a real operations product: hundreds of TypeScript/TSX files, 73 test files, and 100+ Supabase migrations across patient care, queueing, prescriptions, surgery, finance, and access control.",
+      "Includes an in-app change-request system where staff requests move through Supabase, GitHub draft PRs, Copilot PR comments, Vercel preview tracking, and merge-state sync back into the app.",
+      "Hardening work is visible in the code shape: Supabase RLS validation, patient attachment retention/deletion paths, role-aware access checks, Sentry filtering, slow-network handling, retries, and focused regression tests.",
+    ],
+    tech: ["Next.js 16", "React 19", "TypeScript", "Chakra UI", "Supabase", "RLS", "Vitest", "Sentry"],
+    highlight: "Clinic ops + AI-assisted change requests",
+    evidence: [{ label: "Private GitHub repo", href: "https://github.com/DarksightKellar/clinic-ms" }],
+    cover: { from: "#052e2b", to: "#155e75", accent: "#67e8f9", shape: "pulse" },
+  },
+  {
     title: "Post-Mortem AI video pipeline",
     slug: "post-mortem",
     role: "Solo engineer",
