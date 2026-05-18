@@ -46,13 +46,15 @@ describe("portfolio positioning data", () => {
     }
   });
 
-  it("surfaces Clinic-MS as a serious private operations system, not a generic dashboard", () => {
+  it("surfaces Clinic-MS with client-facing product copy, not audit-note copy", () => {
     const clinicMs = projects.find((project) => project.slug === "clinic-ms");
+    const copy = `${clinicMs?.description} ${clinicMs?.proof.join(" ")}`;
 
     expect(clinicMs).toBeDefined();
     expect(clinicMs?.description).toMatch(/clinic|patient|operations/i);
     expect(clinicMs?.tech).toEqual(expect.arrayContaining(["Next.js 16", "Supabase", "RLS", "Vitest"]));
-    expect(`${clinicMs?.description} ${clinicMs?.proof.join(" ")}`).toMatch(/change request|Copilot|Sentry|migration|RLS/i);
+    expect(copy).toMatch(/change requests|preview|patients|staff/i);
+    expect(copy.toLowerCase()).not.toMatch(/cloned codebase|codebase shows|test files|supabase migrations|hardening work is visible|visible in the code shape/);
   });
 
   it("surfaces GitHub contribution signals beyond personal demo projects", () => {

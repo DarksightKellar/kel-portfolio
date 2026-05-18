@@ -182,11 +182,11 @@ export const projects: Project[] = [
     role: "Product engineer for clinical operations",
     kind: "client",
     description:
-      "A private clinic management system for the operational middle of care: patient records, appointments, consultation flow, queues, dispensary, finance, surgery, reports, staff roles, and patient-facing portal work.",
+      "A clinic operations product for the messy middle of care: keeping front desk, clinicians, dispensary, finance, theatre, and patients aligned without making staff fight the software.",
     proof: [
-      "Cloned codebase shows a real operations product: hundreds of TypeScript/TSX files, 73 test files, and 100+ Supabase migrations across patient care, queueing, prescriptions, surgery, finance, and access control.",
-      "Includes an in-app change-request system where staff requests move through Supabase, GitHub draft PRs, Copilot PR comments, Vercel preview tracking, and merge-state sync back into the app.",
-      "Hardening work is visible in the code shape: Supabase RLS validation, patient attachment retention/deletion paths, role-aware access checks, Sentry filtering, slow-network handling, retries, and focused regression tests.",
+      "Turned day-to-day clinic work into role-aware flows: booking, queueing, consultation notes, prescriptions, invoices, surgery scheduling, stock, reports, and a patient portal.",
+      "Built an in-app change-request loop so staff can ask for fixes from inside the product, get preview builds, and track the request back to merge without leaving operations.",
+      "Focused reliability where real clinics feel pain: access control, patient-file retention, deletion paths, slow-network feedback, noisy error filtering, and regression coverage around fragile workflows.",
     ],
     tech: ["Next.js 16", "React 19", "TypeScript", "Chakra UI", "Supabase", "RLS", "Vitest", "Sentry"],
     highlight: "Clinic ops + AI-assisted change requests",
