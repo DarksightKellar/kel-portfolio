@@ -7,10 +7,10 @@ import { profile } from "@/lib/data";
 
 const links = [
   { label: "Work", href: "#projects" },
-  { label: "Principles", href: "#skills" },
+  { label: "Skills", href: "#skills" },
   { label: "GitHub", href: "#github" },
   { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Hire Kelvin", href: "#contact" },
 ];
 
 type Theme = "dark" | "light";

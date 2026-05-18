@@ -18,8 +18,8 @@ export default function Hero() {
           </p>
 
           <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-zinc-950 dark:text-white md:text-7xl lg:text-8xl">
-            Build the thing that only exists in your head.
-            <span className="block text-zinc-500 dark:text-white/35">Then make it hold.</span>
+            Turn unclear product ideas into working software.
+            <span className="block text-zinc-500 dark:text-white/35">Then make it reliable.</span>
           </h1>
 
           <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700 dark:text-white/65 md:text-xl">
@@ -34,13 +34,13 @@ export default function Hero() {
               className="inline-flex items-center justify-center gap-2 rounded-full bg-zinc-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-white/90"
             >
               <Mail size={17} />
-              Talk through a build
+              Discuss a role or project
             </a>
             <a
               href="#projects"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-zinc-300 bg-white/70 px-6 py-3 text-sm font-semibold text-zinc-900 transition hover:border-zinc-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-white/25"
             >
-              See proof
+              See selected work
               <ArrowDown size={16} />
             </a>
           </div>
@@ -65,7 +65,7 @@ export default function Hero() {
           className="rounded-[2rem] border border-zinc-200 bg-white/75 p-5 shadow-2xl shadow-zinc-950/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.045] dark:shadow-black/30"
         >
           <div className="rounded-[1.5rem] border border-zinc-200 bg-zinc-950 p-6 text-white dark:border-white/10">
-            <p className="text-xs uppercase tracking-[0.24em] text-emerald-300/70">Quick scan</p>
+            <p className="text-xs uppercase tracking-[0.24em] text-emerald-300/70">At a glance</p>
             <div className="mt-6 space-y-5">
               {quickScanProof.map((item) => (
                 <div key={item.label} className="border-b border-white/10 pb-5 last:border-b-0 last:pb-0">

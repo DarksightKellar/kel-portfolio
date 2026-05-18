@@ -33,9 +33,9 @@ export default function Projects() {
       <div className="mx-auto max-w-6xl" ref={ref}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="max-w-3xl">
           <p className="mb-4 text-sm uppercase tracking-[0.24em] text-zinc-500 dark:text-white/40">Selected work</p>
-          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white md:text-5xl">Proof, not claims.</h2>
+          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white md:text-5xl">Selected work with public evidence.</h2>
           <p className="mt-5 text-base leading-7 text-zinc-650 text-zinc-700 dark:text-white/55">
-            Public context, GitHub signal, and client/product work that shows the kind of problems I am built for: ambiguous workflows, security-shaped UX, governance, payments, mobile, and automation.
+            Public context, GitHub work, and client/product projects across complex workflows, security-sensitive UX, governance, payments, mobile, and automation.
           </p>
         </motion.div>
 

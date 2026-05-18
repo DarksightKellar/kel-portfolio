@@ -8,8 +8,8 @@ import {
 } from "./data";
 
 describe("portfolio positioning data", () => {
-  it("positions Kelvin as a senior builder for ambiguous, hard-to-debug systems without hype language", () => {
-    expect(profile.positioning).toContain("ambiguous");
+  it("positions Kelvin as a senior builder for unclear, hard-to-debug systems without hype language", () => {
+    expect(profile.positioning).toContain("unclear");
     expect(profile.positioning).toContain("debug");
     expect(profile.positioning).toContain("shipped");
     expect(`${profile.positioning} ${profile.summary}`.toLowerCase()).not.toMatch(/10x|rockstar|ninja|wizard/);
@@ -19,9 +19,9 @@ describe("portfolio positioning data", () => {
     expect(operatingPrinciples).toHaveLength(5);
     expect(operatingPrinciples.map((principle) => principle.title)).toEqual(
       expect.arrayContaining([
-        "Test the claim before changing the code",
-        "Make the unclear executable",
-        "Leave systems sharper than I found them",
+        "Verify before changing code",
+        "Turn unclear work into executable decisions",
+        "Leave systems easier to change",
       ]),
     );
   });

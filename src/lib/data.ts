@@ -24,51 +24,51 @@ export type Project = {
 export const profile = {
   name: "Kelvin Lartey",
   initials: "KL",
-  title: "Senior product engineer for hard, ambiguous systems",
+  title: "Senior product engineer for complex product systems",
   email: "kelvinklartey@gmail.com",
   phone: "+44 7944 702 387",
   github: "https://github.com/DarksightKellar",
   linkedin: "https://www.linkedin.com/in/kelvin-lartey-851a6996/",
   positioning:
-    "I turn ambiguous ideas, failing systems, debug trails, and half-spoken product instincts into shipped, test-backed software people can trust.",
+    "I debug brittle systems and turn unclear product ideas into shipped, tested software people can trust.",
   summary:
-    "I am strongest where the problem is not yet clean: debugging brittle systems, shaping rough product intent, cutting through vague requirements, and building the version that survives contact with real users. No theatre. No mythology. Just clear thinking, careful execution, and code that holds up.",
+    "I work best when requirements are unclear, systems are brittle, and users still need a dependable product. I turn rough intent into tested flows and keep the code understandable after launch.",
   availability:
-    "Open to remote senior/staff engineering roles, contract builds, rescue missions, and product-heavy debugging work.",
+    "Open to remote senior/staff engineering roles, contract builds, stabilization work, and product-heavy debugging.",
 };
 
 export const quickScanProof = [
-  { label: "Best at", value: "Ambiguous product + hard debugging" },
-  { label: "Delivery style", value: "Tests first, evidence before fixes" },
-  { label: "Public signal", value: "Web3, mobile, infra, automation" },
-  { label: "Mode", value: "Calm, exact, owner-minded" },
+  { label: "Best for", value: "Ambiguous builds + production debugging" },
+  { label: "Proof", value: "100K+ app listing, public protocol repos" },
+  { label: "Delivery", value: "Scope first, test risky parts, ship" },
+  { label: "Available for", value: "Remote senior roles + contract builds" },
 ];
 
 export const operatingPrinciples = [
   {
-    title: "Test the claim before changing the code",
+    title: "Verify before changing code",
     body:
-      "I do not patch by vibe. Reproduce, isolate, write the failing test, then fix the smallest real cause.",
+      "Reproduce the issue, isolate the cause, add the failing test, then make the smallest safe fix.",
   },
   {
-    title: "Make the unclear executable",
+    title: "Turn unclear work into executable decisions",
     body:
-      "A useful engineer turns fog into interfaces, acceptance criteria, tradeoffs, and running software.",
+      "I translate loose requirements into interfaces, acceptance criteria, tradeoffs, and working software.",
   },
   {
-    title: "Leave systems sharper than I found them",
+    title: "Leave systems easier to change",
     body:
       "Refactors are not cosmetic. They should reduce future mistakes, clarify ownership, or remove hidden coupling.",
   },
   {
     title: "Build for the person who inherits it",
     body:
-      "Readable boundaries, boring verification, good names, and no placeholder paths pretending to be architecture.",
+      "Readable boundaries, boring verification, good names, and abstractions that match the real system.",
   },
   {
-    title: "Say what is weak while it is still cheap",
+    title: "Surface risk while it is still cheap",
     body:
-      "I would rather surface risk early than let a team purchase comfort with future rework.",
+      "I raise weak assumptions early so teams can fix them before they become expensive.",
   },
 ];
 
@@ -82,7 +82,7 @@ export const capabilities = [
     items: ["TDD", "integration tests", "regression harnesses", "root-cause analysis", "CI", "performance triage"],
   },
   {
-    category: "Web3 + security-shaped systems",
+    category: "Web3 + security-sensitive systems",
     items: ["Solidity", "Safe modules", "DAO governance", "account abstraction", "ethers", "wagmi", "viem"],
   },
   {
@@ -98,11 +98,11 @@ export const projects: Project[] = [
     role: "Core contributor across interface and contracts",
     kind: "client",
     description:
-      "A decentralized dead man's switch built on Ethereum and Arweave. The interesting work lives where product UX, contract state, storage permanence, and adversarial failure modes meet.",
+      "A decentralized dead man's switch built on Ethereum and Arweave. My work sat across product UX, contract state, permanent storage, and adversarial failure modes.",
     proof: [
       "Public repos list DarksightKellar among top contributors on the V2 app and contracts.",
       "The protocol protects information release through time-delayed, encrypted, on-chain conditions.",
-      "Work spans the parts hiring teams care about: frontend flows, contract integration, local development, and system reliability.",
+      "Contributed across frontend flows, contract integration, local development, and reliability work.",
     ],
     tech: ["TypeScript", "React", "Solidity", "Hardhat", "Ethereum", "Arweave"],
     highlight: "Privacy-critical product with contract-backed behavior",
@@ -119,14 +119,14 @@ export const projects: Project[] = [
     role: "Governance product + smart-contract contributor",
     kind: "client",
     description:
-      "Composable DAO governance around Safe modules, proposal execution, voting strategies, and sponsored voting. This is infrastructure where UX mistakes become governance mistakes.",
+      "Governance software for groups managing shared funds and contract execution. The hard part is making voting, permissions, and execution flows clear enough that users approve the right action.",
     proof: [
       "decentdao/decent-contracts lists DarksightKellar as a contributor.",
       "Azorius is a Safe Zodiac module framework for modular DAO proposal and voting execution.",
       "Gasless voting documentation shows the product goal: reduce voter friction with shared paymaster funding.",
     ],
     tech: ["Solidity", "TypeScript", "Safe", "Zodiac", "Account abstraction", "Next.js"],
-    highlight: "Governance systems with real execution risk",
+    highlight: "Safe-based DAO governance and proposal execution",
     evidence: [
       { label: "Decent contracts", href: "https://github.com/decentdao/decent-contracts" },
       { label: "Gasless voting docs", href: "https://docs.decentdao.org/app/user-guide/gasless-voting" },
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     proof: [
       "Google Play lists 100K+ downloads and no data collection declared.",
       "Product materials describe offline vault encryption, QR backups, and multi-authorized access.",
-      "The engineering challenge is simple to say and hard to make safe: help ordinary users hold sensitive secrets without training them to be security engineers.",
+      "The core challenge was helping non-technical users store sensitive secrets safely without exposing them to cryptographic complexity.",
     ],
     tech: ["Flutter", "Dart", "React Native", "Cryptography", "Mobile release", "Firebase"],
     highlight: "100K+ public Android downloads; offline-first security UX",
@@ -161,11 +161,11 @@ export const projects: Project[] = [
     role: "Fintech product engineering",
     kind: "client",
     description:
-      "Cross-border digital financial services for African payments, bill payment, mobile money, cards, and business batch payment workflows. A product where trust, auditability, and operational clarity matter more than novelty.",
+      "Cross-border financial workflows for African payments, mobile money, cards, bill pay, and business payouts. The product needed trust, auditability, and operational clarity more than novelty.",
     proof: [
       "Public site describes cross-border payments across Africa, the US, Europe, and Asia.",
-      "The platform claims RBAC, audit capability, regulated transactions, and PCI DSS alignment.",
-      "Good portfolio signal because it shows practical financial workflows, not only crypto-native systems.",
+      "Public materials describe RBAC, audit capability, regulated transactions, and PCI DSS alignment.",
+      "Worked with practical financial workflows including roles, payments, audit trails, batch operations, and operational dashboards.",
     ],
     tech: ["Fintech", "Payments", "RBAC", "Audit trails", "Mobile money", "Merchant workflows"],
     highlight: "Regulated payment workflows across African corridors",
@@ -182,15 +182,15 @@ export const projects: Project[] = [
     role: "Product engineer for clinical operations",
     kind: "client",
     description:
-      "A clinic operations product for the messy middle of care: keeping front desk, clinicians, dispensary, finance, theatre, and patients aligned without making staff fight the software.",
+      "A clinic operations product for the handoffs that usually break: front desk, clinicians, dispensary, finance, operating theatre, and patients.",
     proof: [
       "Turned day-to-day clinic work into role-aware flows: booking, queueing, consultation notes, prescriptions, invoices, surgery scheduling, stock, reports, and a patient portal.",
-      "Built an in-app change-request loop so staff can ask for fixes from inside the product, get preview builds, and track the request back to merge without leaving operations.",
+      "Built an in-app change-request loop so staff can report friction from inside the product, review fixes in preview builds, and keep operational feedback tied to delivery.",
       "Focused reliability where real clinics feel pain: access control, patient-file retention, deletion paths, slow-network feedback, noisy error filtering, and regression coverage around fragile workflows.",
     ],
     tech: ["Next.js 16", "React 19", "TypeScript", "Chakra UI", "Supabase", "RLS", "Vitest", "Sentry"],
-    highlight: "Clinic ops + AI-assisted change requests",
-    evidence: [{ label: "Private GitHub repo", href: "https://github.com/DarksightKellar/clinic-ms" }],
+    highlight: "Clinic operations with in-app change requests",
+    evidence: [{ label: "Private repo - walkthrough available", href: "https://github.com/DarksightKellar/clinic-ms" }],
     cover: { from: "#052e2b", to: "#155e75", accent: "#67e8f9", shape: "pulse" },
   },
   {
@@ -203,10 +203,10 @@ export const projects: Project[] = [
     proof: [
       "Public GitHub activity shows recent commits to DarksightKellar/post-mortem.",
       "Locally developed with strict TDD around pipeline stages and media rendering contracts.",
-      "It is a strong signal for turning messy, multi-stage workflows into observable machinery.",
+      "Turns a loose, multi-stage content process into a repeatable pipeline with clear stages, tests, and failure points.",
     ],
     tech: ["Python", "FFmpeg", "TTS", "YouTube API", "pipeline testing", "automation"],
-    highlight: "A product-shaped automation engine, not a toy script",
+    highlight: "Repeatable automation pipeline for scripted video production",
     evidence: [{ label: "GitHub repo", href: "https://github.com/DarksightKellar/post-mortem" }],
     cover: { from: "#1e1b4b", to: "#581c87", accent: "#e879f9", shape: "pulse" },
   },
@@ -216,18 +216,15 @@ export const projects: Project[] = [
     role: "Founder / product engineer",
     kind: "product",
     description:
-      "A mobile-first Flutter product for learning how time actually gets spent. The build is intentionally boring in the right places: clean architecture, strict tests, and no placeholder paths masquerading as progress.",
+      "A local-first Flutter product for understanding how time actually gets spent. The useful part is product restraint: narrow first version, durable data model, testable architecture, and a path to sync later.",
     proof: [
-      "MVP scope is Learn Mode: logging what happened, not bloated task-management theatre.",
+      "MVP scope is Learn Mode: logging what happened before expanding into planning or task management.",
       "Architecture work emphasizes durable local data shape and future sync without leaking vendor semantics into domain rules.",
-      "This reflects how I like to build: narrow the product, protect the core, and make correctness cheap to verify.",
+      "Keeps the first version narrow, protects the core data model, and makes correctness cheap to verify.",
     ],
     tech: ["Flutter", "Dart", "Drift", "Clean Architecture", "TDD", "Mobile UX"],
-    highlight: "A personal product shaped by unusually strict delivery standards",
-    evidence: [
-      { label: "Local product context", href: "https://github.com/DarksightKellar" },
-      { label: "Portfolio repo", href: "https://dskellar.netlify.app" },
-    ],
+    highlight: "Local-first mobile product with disciplined MVP scope",
+    evidence: [{ label: "Private product - walkthrough available", href: "https://github.com/DarksightKellar" }],
     cover: { from: "#022c22", to: "#065f46", accent: "#6ee7b7", shape: "timeline" },
   },
   {
@@ -238,11 +235,11 @@ export const projects: Project[] = [
     description:
       "A production-minded e-commerce system for handmade Ghanaian dresses: product presentation, ordering, payments, admin flows, and the operational seams behind a small brand.",
     proof: [
-      "Local README describes a production-ready e-commerce platform built with Next.js 16, Chakra UI v3, Supabase, and Stripe.",
-      "Relevant because it shows product taste and business workflow thinking, not just infrastructure work.",
+      "Built a Next.js, Chakra UI, Supabase, and Stripe commerce application for catalog, checkout, admin, and order workflows.",
+      "Shows product taste, business workflow thinking, and delivery beyond infrastructure work.",
     ],
     tech: ["Next.js 16", "TypeScript", "Chakra UI", "Supabase", "Stripe", "Framer Motion"],
-    highlight: "A real business product, not just portfolio garnish",
+    highlight: "Production-minded e-commerce for a real small business",
     evidence: [{ label: "GitHub repo", href: "https://github.com/DarksightKellar/vienne-dresses" }],
     cover: { from: "#3f1d2d", to: "#7f1d1d", accent: "#f9a8d4", shape: "atelier" },
   },
@@ -289,7 +286,7 @@ export const experiences = [
     highlights: [
       "Built across DAO governance, Safe modules, gasless voting, protocol interfaces, and smart-contract integration.",
       "Contributed publicly to Decent and Sarcophagus repositories used by real Web3 products.",
-      "Operated in the messy middle between product requirements, adversarial systems, and user-facing flows.",
+      "Worked across product requirements, adversarial systems, and user-facing flows.",
     ],
   },
   {
@@ -298,7 +295,7 @@ export const experiences = [
     period: "2021 – 2022",
     highlights: [
       "Led mobile work for offline-first secret management across iOS and Android.",
-      "Worked on security-shaped UX where ordinary users need safe defaults without understanding every cryptographic detail.",
+      "Worked on security-sensitive UX where ordinary users need safe defaults without understanding every cryptographic detail.",
       "Public store presence shows 100K+ Android downloads and active app listings.",
     ],
   },
@@ -309,7 +306,7 @@ export const experiences = [
     highlights: [
       "Built practical business software in fintech, scheduling, and blockchain-adjacent product work.",
       "Worked close to operational requirements: roles, audit trails, payments, dashboards, and workflow correctness.",
-      "Developed the habit that still defines my work: make the system explicit enough that teams can operate it under pressure.",
+      "Made operational constraints explicit so teams could run the system under pressure.",
     ],
   },
 ];
