@@ -24,24 +24,24 @@ export type Project = {
 export const profile = {
   name: "Kelvin Lartey",
   initials: "KL",
-  title: "Builder for messy product systems",
+  title: "Senior product engineer for complex product systems",
   email: "kelvinklartey@gmail.com",
   phone: "+44 7944 702 387",
   github: "https://github.com/DarksightKellar",
   linkedin: "https://www.linkedin.com/in/kelvin-lartey-851a6996/",
   positioning:
-    "Give me the rough version: the unclear idea, the brittle workflow, the bug that only appears when it matters. I turn it into shipped software with a debug trail.",
+    "I debug brittle systems and turn unclear product ideas into shipped, tested software people can trust.",
   summary:
-    "I like the work before it has clean edges: vague product intent, brittle code, late-night production mysteries. I make the shape clear, test the risky parts, and leave the system easier to own.",
+    "I work best when requirements are unclear, systems are brittle, and users still need a dependable product. I turn rough intent into tested flows and keep the code understandable after launch.",
   availability:
-    "Remote roles, serious contract builds, stabilization work, product-heavy debugging. If it is messy and important, send it.",
+    "Open to remote senior/staff engineering roles, contract builds, stabilization work, and product-heavy debugging.",
 };
 
 export const quickScanProof = [
-  { label: "Bring me", value: "messy builds, weird bugs, brittle systems" },
-  { label: "You get", value: "shipped software with a debug trail" },
-  { label: "I work by", value: "reproduce, test, cut, ship" },
-  { label: "Open for", value: "remote roles + serious contract builds" },
+  { label: "Best for", value: "Ambiguous builds + production debugging" },
+  { label: "Proof", value: "100K+ app listing, public protocol repos" },
+  { label: "Delivery", value: "Scope first, test risky parts, ship" },
+  { label: "Available for", value: "Remote senior roles + contract builds" },
 ];
 
 export const operatingPrinciples = [

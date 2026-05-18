@@ -33,9 +33,9 @@ export default function Projects() {
       <div className="mx-auto max-w-6xl" ref={ref}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="max-w-3xl">
           <p className="mb-4 text-sm uppercase tracking-[0.24em] text-zinc-500 dark:text-white/40">Selected work</p>
-          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white md:text-5xl">Work that had to hold.</h2>
+          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white md:text-5xl">Selected work with public evidence.</h2>
           <p className="mt-5 text-base leading-7 text-zinc-650 text-zinc-700 dark:text-white/55">
-            Some of it is public. Some of it I can only walk through. The through-line is the same: vague requirements, fragile workflows, and software that had to survive real users.
+            Public context, GitHub work, and client/product projects across complex workflows, security-sensitive UX, governance, payments, mobile, and automation.
           </p>
         </motion.div>
 

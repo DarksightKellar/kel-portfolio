@@ -49,23 +49,22 @@ describe("portfolio copy audit", () => {
     expect(copy).not.toMatch(/not just|not only|not a /i);
   });
 
-  it("keeps quick-scan copy concrete without reading like a CV sidebar", () => {
+  it("keeps quick-scan copy concrete for recruiters and contract clients", () => {
     expect(quickScanProof).toEqual([
-      { label: "Bring me", value: "messy builds, weird bugs, brittle systems" },
-      { label: "You get", value: "shipped software with a debug trail" },
-      { label: "I work by", value: "reproduce, test, cut, ship" },
-      { label: "Open for", value: "remote roles + serious contract builds" },
+      { label: "Best for", value: "Ambiguous builds + production debugging" },
+      { label: "Proof", value: "100K+ app listing, public protocol repos" },
+      { label: "Delivery", value: "Scope first, test risky parts, ship" },
+      { label: "Available for", value: "Remote senior roles + contract builds" },
     ]);
   });
 
-  it("keeps the site in Kelvin's voice rather than CV voice", () => {
+  it("keeps the preferred direct-but-sober positioning copy", () => {
     const copy = userFacingDataCopy();
 
-    expect(copy).toMatch(/Give me the rough version/i);
-    expect(copy).toMatch(/the bug that only appears when it matters/i);
-    expect(copy).toMatch(/I like the work/i);
-    expect(copy).not.toMatch(/Senior product engineer for complex product systems/i);
-    expect(copy).not.toMatch(/Open to remote senior\/staff engineering roles/i);
+    expect(copy).toMatch(/Senior product engineer for complex product systems/i);
+    expect(copy).toMatch(/I debug brittle systems and turn unclear product ideas/i);
+    expect(copy).toMatch(/Open to remote senior\/staff engineering roles/i);
+    expect(copy).not.toMatch(/Give me the rough version|I'll make it real, make it reliable/i);
   });
 
   it("labels private or local product evidence honestly without fake public proof", () => {
@@ -98,24 +97,24 @@ describe("portfolio copy audit", () => {
     const contact = readSource("src/components/Contact.tsx");
     const footer = readSource("src/components/Footer.tsx");
 
-    expect(hero).toContain("Give me the rough version.");
-    expect(hero).toContain("I'll make it real, make it reliable");
-    expect(hero).toContain("Show me the work");
-    expect(projectsSource).toContain("Work that had to hold.");
-    expect(projectsSource).not.toMatch(/selected work with public evidence/i);
-    expect(openSource).toContain("Code you can inspect.");
+    expect(hero).toContain("Turn unclear product ideas into working software.");
+    expect(hero).toContain("Then make it reliable.");
+    expect(hero).toContain("See selected work");
+    expect(hero).not.toMatch(/Give me the rough version|I'll make it real, make it reliable/i);
+    expect(projectsSource).toContain("Selected work with public evidence.");
+    expect(openSource).toContain("Public code and contributions.");
     expect(openSource).toContain("The repos I can show cover product surfaces");
     expect(openSource).not.toMatch(/uneven|not just private work|public repositories show/i);
-    expect(experience).toContain("Where I've done this.");
-    expect(contact).toContain("Send me the messy version.");
+    expect(experience).toContain("Experience across product, contracts, and operations.");
+    expect(contact).toContain("Start with the rough version.");
     expect(footer).toContain("Built as a static Next.js portfolio with test coverage.");
   });
 
   it("keeps metadata concrete and searchable", () => {
     const layout = readSource("src/app/layout.tsx");
 
-    expect(layout).toContain("Kelvin Lartey — builder for messy product systems");
-    expect(layout).toContain("rough ideas, brittle workflows, and production bugs");
-    expect(layout).not.toMatch(/hard, ambiguous systems|tests-first rigor|Senior product engineer for complex product systems/i);
+    expect(layout).toContain("Kelvin Lartey — Senior product engineer for complex product systems");
+    expect(layout).toContain("web, mobile, payments, automation, and protocol systems");
+    expect(layout).not.toMatch(/hard, ambiguous systems|tests-first rigor|builder for messy product systems/i);
   });
 });
