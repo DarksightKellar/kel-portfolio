@@ -10,5 +10,13 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
     globals: true,
+    env: {
+      NODE_ENV: "development",
+    },
+    server: {
+      deps: {
+        inline: ["gray-matter", "remark", "remark-parse", "remark-html", "unified"],
+      },
+    },
   },
 });
