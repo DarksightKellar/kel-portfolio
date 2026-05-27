@@ -17,13 +17,14 @@ export type BlogPostSummary = {
 };
 
 function parseFrontmatter(raw: string): { data: Record<string, string>; body: string } {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  const normalizedRaw = raw.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  const match = normalizedRaw.match(/^---\n([\s\S]*?)\n---(?:\n([\s\S]*))?$/);
   if (!match) {
-    return { data: {}, body: raw };
+    return { data: {}, body: normalizedRaw };
   }
 
   const frontmatterBlock = match[1];
-  const body = match[2];
+  const body = match[2] ?? "";
 
   const data: Record<string, string> = {};
   for (const line of frontmatterBlock.split("\n")) {
