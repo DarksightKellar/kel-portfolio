@@ -1,4 +1,3 @@
-// @vitest-environment node
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import * as fs from "fs";
 import * as path from "path";
