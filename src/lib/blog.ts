@@ -28,6 +28,10 @@ function escapeHtml(value: string): string {
     .replace(/\"/g, "&quot;");
 }
 
+function isValidSlug(slug: string): boolean {
+  return /^[a-z0-9-]+$/.test(slug);
+}
+
 function stripMarkdown(text: string): string {
   return text
     // Headers
@@ -128,6 +132,8 @@ export async function getPostBySlug(
   contentDir: string,
   slug: string,
 ): Promise<BlogPost | null> {
+  if (!isValidSlug(slug)) return null;
+
   const filePath = path.join(contentDir, `${slug}.md`);
 
   if (!fs.existsSync(filePath)) return null;

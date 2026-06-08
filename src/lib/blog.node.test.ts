@@ -151,4 +151,21 @@ describe("getPostBySlug", () => {
 
     expect(post).toBeNull();
   });
+
+  it("rejects slugs that could traverse outside the content directory", async () => {
+    const secretSlug = `${path.basename(testDir)}-secret`;
+    const secretPath = path.join(path.dirname(testDir), `${secretSlug}.md`);
+    fs.writeFileSync(
+      secretPath,
+      "---\ntitle: Secret\ndate: 2025-01-01\n---\n\nOutside content.",
+    );
+
+    try {
+      const post = await getPostBySlug(testDir, `../${secretSlug}`);
+
+      expect(post).toBeNull();
+    } finally {
+      fs.rmSync(secretPath, { force: true });
+    }
+  });
 });

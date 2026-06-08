@@ -5,15 +5,22 @@ import * as os from "os";
 import { generateStaticParams } from "./page";
 
 let testDir: string;
+let originalEnv: string | undefined;
 
 beforeEach(() => {
   testDir = fs.mkdtempSync(path.join(os.tmpdir(), "blog-page-test-"));
+  originalEnv = process.env.BLOG_CONTENT_DIR;
   process.env.BLOG_CONTENT_DIR = testDir;
 });
 
 afterEach(() => {
+  if (originalEnv === undefined) {
+    delete process.env.BLOG_CONTENT_DIR;
+  } else {
+    process.env.BLOG_CONTENT_DIR = originalEnv;
+  }
+
   fs.rmSync(testDir, { recursive: true, force: true });
-  delete process.env.BLOG_CONTENT_DIR;
 });
 
 function writePost(slug: string, title: string, date: string, body: string) {
