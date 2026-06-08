@@ -3,7 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as os from "os";
 import { GET as listHandler } from "./route";
-import { GET as singleHandler } from "../post/[slug]/route";
+import { GET as singleHandler } from "../posts/[slug]/route";
 
 let testDir: string;
 let originalEnv: string | undefined;
@@ -68,7 +68,7 @@ describe("GET /api/posts", () => {
   });
 });
 
-describe("GET /api/post/[slug]", () => {
+describe("GET /api/posts/[slug]", () => {
   it("returns 404 when slug does not match any post", async () => {
     const response = await singleHandler(new Request("http://localhost"), {
       params: Promise.resolve({ slug: "nonexistent" }),
