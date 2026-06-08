@@ -1,26 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, beforeEach, afterEach } from "vitest";
-import * as fs from "fs";
-import * as path from "path";
-import * as os from "os";
+import { describe, expect, it, vi } from "vitest";
 import BlogPage, { generateMetadata } from "./page";
 
-let testDir: string;
+vi.mock("@/lib/blog", () => ({
+  getAllPosts: vi.fn(),
+}));
 
-beforeEach(() => {
-  testDir = fs.mkdtempSync(path.join(os.tmpdir(), "blog-page-test-"));
-  process.env.BLOG_CONTENT_DIR = testDir;
-});
-
-afterEach(() => {
-  fs.rmSync(testDir, { recursive: true, force: true });
-  delete process.env.BLOG_CONTENT_DIR;
-});
-
-function writePost(slug: string, title: string, date: string, body: string) {
-  const content = `---\ntitle: "${title}"\ndate: "${date}"\n---\n\n${body}`;
-  fs.writeFileSync(path.join(testDir, `${slug}.md`), content);
-}
+import { getAllPosts } from "@/lib/blog";
 
 describe("generateMetadata", () => {
   it("returns the blog page title and description", () => {
@@ -32,27 +18,31 @@ describe("generateMetadata", () => {
 });
 
 describe("BlogPage", () => {
-  it("shows an empty state message when no posts exist", () => {
-    render(<BlogPage />);
+  it("shows an empty state message when no posts exist", async () => {
+    vi.mocked(getAllPosts).mockResolvedValue([]);
+
+    render(await BlogPage());
 
     expect(screen.getByText(/no posts/i)).toBeInTheDocument();
   });
 
-  it("renders a list of posts with title, date, and excerpt", () => {
-    writePost(
-      "first-post",
-      "First Post",
-      "2025-01-15",
-      "This is the first post excerpt.",
-    );
-    writePost(
-      "second-post",
-      "Second Post",
-      "2025-03-20",
-      "Second post excerpt content.",
-    );
+  it("renders a list of posts with title, date, and excerpt", async () => {
+    vi.mocked(getAllPosts).mockResolvedValue([
+      {
+        title: "First Post",
+        slug: "first-post",
+        date: "2025-01-15",
+        excerpt: "This is the first post excerpt.",
+      },
+      {
+        title: "Second Post",
+        slug: "second-post",
+        date: "2025-03-20",
+        excerpt: "Second post excerpt content.",
+      },
+    ]);
 
-    render(<BlogPage />);
+    render(await BlogPage());
 
     expect(screen.getByText("First Post")).toBeInTheDocument();
     expect(screen.getByText("Second Post")).toBeInTheDocument();
@@ -66,21 +56,40 @@ describe("BlogPage", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders each post title as a link to the individual post page", () => {
-    writePost("my-post", "My Post", "2025-06-01", "Excerpt text.");
+  it("renders each post title as a link to the individual post page", async () => {
+    vi.mocked(getAllPosts).mockResolvedValue([
+      {
+        title: "My Post",
+        slug: "my-post",
+        date: "2025-06-01",
+        excerpt: "Excerpt text.",
+      },
+    ]);
 
-    render(<BlogPage />);
+    render(await BlogPage());
 
     const link = screen.getByRole("link", { name: "My Post" });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "/blog/my-post");
   });
 
-  it("renders posts sorted by date descending", () => {
-    writePost("older", "Older Post", "2025-01-01", "Older.");
-    writePost("newer", "Newer Post", "2025-06-01", "Newer.");
+  it("renders posts sorted by date descending", async () => {
+    vi.mocked(getAllPosts).mockResolvedValue([
+      {
+        title: "Newer Post",
+        slug: "newer",
+        date: "2025-06-01",
+        excerpt: "Newer.",
+      },
+      {
+        title: "Older Post",
+        slug: "older",
+        date: "2025-01-01",
+        excerpt: "Older.",
+      },
+    ]);
 
-    render(<BlogPage />);
+    render(await BlogPage());
 
     const postHeadings = screen.getAllByRole("heading", { level: 2 });
     const titles = postHeadings.map((el) => el.textContent);

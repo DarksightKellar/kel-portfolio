@@ -10,7 +10,7 @@ function getContentDir(): string {
 
 export const dynamic = "force-static";
 
-export function GET() {
-  const posts = getAllPosts(getContentDir());
+export async function GET() {
+  const posts = await getAllPosts(getContentDir());
   return NextResponse.json({ posts });
 }

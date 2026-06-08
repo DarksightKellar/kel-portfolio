@@ -10,8 +10,8 @@ function getContentDir(): string {
   return process.env.BLOG_CONTENT_DIR || DEFAULT_CONTENT_DIR;
 }
 
-export function generateStaticParams() {
-  const posts = getAllPosts(getContentDir());
+export async function generateStaticParams() {
+  const posts = await getAllPosts(getContentDir());
   return posts.map((post) => ({ slug: post.slug }));
 }
 
@@ -21,7 +21,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(getContentDir(), slug);
+  const post = await getPostBySlug(getContentDir(), slug);
 
   if (!post) {
     return { title: "Post not found" };
@@ -39,7 +39,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(getContentDir(), slug);
+  const post = await getPostBySlug(getContentDir(), slug);
 
   if (!post) {
     notFound();

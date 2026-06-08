@@ -10,17 +10,17 @@ function getContentDir(): string {
 
 export const dynamic = "force-static";
 
-export function generateStaticParams() {
-  const posts = getAllPosts(getContentDir());
+export async function generateStaticParams() {
+  const posts = await getAllPosts(getContentDir());
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-export function GET(
+export async function GET(
   _request: Request,
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ slug: string }> },
 ) {
-  return params.then(({ slug }) => {
-    const post = getPostBySlug(getContentDir(), slug);
+  return params.then(async ({ slug }) => {
+    const post = await getPostBySlug(getContentDir(), slug);
 
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });

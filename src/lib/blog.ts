@@ -1,5 +1,9 @@
 import * as fs from "fs";
 import * as path from "path";
+import matter from "gray-matter";
+import { remark } from "remark";
+import remarkParse from "remark-parse";
+import remarkHtml from "remark-html";
 
 export type BlogPost = {
   title: string;
@@ -16,30 +20,6 @@ export type BlogPostSummary = {
   excerpt: string;
 };
 
-function parseFrontmatter(raw: string): { data: Record<string, string>; body: string } {
-  const normalizedRaw = raw.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-  const match = normalizedRaw.match(/^---\n([\s\S]*?)\n---(?:\n([\s\S]*))?$/);
-  if (!match) {
-    return { data: {}, body: normalizedRaw };
-  }
-
-  const frontmatterBlock = match[1];
-  const body = match[2] ?? "";
-
-  const data: Record<string, string> = {};
-  for (const line of frontmatterBlock.split("\n")) {
-    const colonIndex = line.indexOf(":");
-    if (colonIndex === -1) continue;
-    const key = line.slice(0, colonIndex).trim();
-    const value = line.slice(colonIndex + 1).trim().replace(/^["']|["']$/g, "");
-    if (key) {
-      data[key] = value;
-    }
-  }
-
-  return { data, body };
-}
-
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -48,46 +28,28 @@ function escapeHtml(value: string): string {
     .replace(/\"/g, "&quot;");
 }
 
-function isSafeHref(href: string): boolean {
-  const trimmed = href.trim();
-
-  return (
-    /^(https?:|mailto:|tel:)/i.test(trimmed) ||
-    /^(\/|\.\/|\.\.\/|#)/.test(trimmed)
-  );
-}
-
-function markdownToHtml(md: string): string {
-  let html = escapeHtml(md);
-
-  // Bold
-  html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-
-  // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, text, href) => {
-    if (!isSafeHref(href)) {
-      return text;
-    }
-
-    return `<a href="${escapeHtml(href)}">${text}</a>`;
-  });
-
-  // Paragraphs: split on blank lines, wrap non-empty chunks in <p>
-  const paragraphs = html.split(/\n\n+/);
-  html = paragraphs
-    .map((p) => p.trim())
-    .filter((p) => p.length > 0)
-    .map((p) => `<p>${p.replace(/\n/g, " ")}</p>`)
-    .join("\n");
-
-  return html;
-}
-
 function stripMarkdown(text: string): string {
   return text
-    .replace(/\*\*(.+?)\*\*/g, "$1")
+    // Headers
+    .replace(/^#{1,6}\s+/gm, "")
+    // Bold / italic
+    .replace(/(\*{1,3}|_{1,3})(.+?)\1/g, "$2")
+    // Images
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
+    // Links
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-    .replace(/[_*`~]/g, "");
+    // Inline code
+    .replace(/`{1,3}[^`]*`{1,3}/g, "")
+    // Blockquotes
+    .replace(/^>\s?/gm, "")
+    // Horizontal rules
+    .replace(/^[-*_]{3,}\s*$/gm, "")
+    // List markers
+    .replace(/^[\s]*[-*+]\s/gm, "")
+    .replace(/^[\s]*\d+\.\s/gm, "")
+    // Strikethrough
+    .replace(/~~(.+?)~~/g, "$1")
+    .trim();
 }
 
 function extractExcerpt(body: string): string {
@@ -98,17 +60,35 @@ function extractExcerpt(body: string): string {
   return firstPara.slice(0, 200) + "...";
 }
 
-function parsePostFile(filePath: string, slug: string): BlogPost | null {
+async function markdownToHtml(md: string): Promise<string> {
+  const sanitizedMarkdown = escapeHtml(md);
+  const result = await remark()
+    .use(remarkParse)
+    .use(remarkHtml, { sanitize: true })
+    .process(sanitizedMarkdown);
+  return result.toString();
+}
+
+async function parsePostFile(
+  filePath: string,
+  slug: string,
+): Promise<BlogPost | null> {
   try {
     const raw = fs.readFileSync(filePath, "utf-8");
-    const { data, body } = parseFrontmatter(raw);
+    const { data, content: body } = matter(raw);
 
-    const title = data.title;
-    const date = data.date;
+    const title = data.title as string | undefined;
+    const rawDate = data.date;
+    const date =
+      rawDate instanceof Date
+        ? rawDate.toISOString().slice(0, 10)
+        : typeof rawDate === "string"
+          ? rawDate
+          : undefined;
 
     if (!title || !date) return null;
 
-    const content = markdownToHtml(body);
+    const content = await markdownToHtml(body);
     const excerpt = extractExcerpt(body);
 
     return { title, slug, date, content, excerpt };
@@ -117,7 +97,9 @@ function parsePostFile(filePath: string, slug: string): BlogPost | null {
   }
 }
 
-export function getAllPosts(contentDir: string): BlogPostSummary[] {
+export async function getAllPosts(
+  contentDir: string,
+): Promise<BlogPostSummary[]> {
   if (!fs.existsSync(contentDir)) return [];
 
   const files = fs.readdirSync(contentDir).filter((f) => f.endsWith(".md"));
@@ -126,7 +108,7 @@ export function getAllPosts(contentDir: string): BlogPostSummary[] {
 
   for (const file of files) {
     const slug = file.replace(/\.md$/, "");
-    const post = parsePostFile(path.join(contentDir, file), slug);
+    const post = await parsePostFile(path.join(contentDir, file), slug);
     if (post) {
       posts.push(post);
     }
@@ -142,10 +124,10 @@ export function getAllPosts(contentDir: string): BlogPostSummary[] {
   }));
 }
 
-export function getPostBySlug(
+export async function getPostBySlug(
   contentDir: string,
-  slug: string
-): BlogPost | null {
+  slug: string,
+): Promise<BlogPost | null> {
   const filePath = path.join(contentDir, `${slug}.md`);
 
   if (!fs.existsSync(filePath)) return null;

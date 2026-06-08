@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import * as fs from "fs";
 import * as path from "path";
@@ -30,7 +31,7 @@ function writePost(slug: string, frontmatter: Record<string, string>, body: stri
   fs.writeFileSync(path.join(testDir, `${slug}.md`), lines.join("\n"));
 }
 
-describe("GET /api/blog", () => {
+describe("GET /api/posts", () => {
   it("returns 200 OK with an empty posts array when no posts exist", async () => {
     const response = await listHandler();
     const body = await response.json();
@@ -43,17 +44,17 @@ describe("GET /api/blog", () => {
     writePost(
       "alpha",
       { title: "Alpha", date: "2025-01-01" },
-      "Alpha content."
+      "Alpha content.",
     );
     writePost(
       "beta",
       { title: "Beta", date: "2025-06-15" },
-      "Beta content."
+      "Beta content.",
     );
     writePost(
       "gamma",
       { title: "Gamma", date: "2025-03-10" },
-      "Gamma content."
+      "Gamma content.",
     );
 
     const response = await listHandler();
@@ -68,7 +69,7 @@ describe("GET /api/blog", () => {
   });
 });
 
-describe("GET /api/blog/[slug]", () => {
+describe("GET /api/post/[slug]", () => {
   it("returns 404 when slug does not match any post", async () => {
     const response = await singleHandler(new Request("http://localhost"), {
       params: Promise.resolve({ slug: "nonexistent" }),
@@ -83,7 +84,7 @@ describe("GET /api/blog/[slug]", () => {
     writePost(
       "hello-world",
       { title: "Hello World", date: "2025-04-20" },
-      "The **bold** claim with a [link](https://example.com)."
+      "The **bold** claim with a [link](https://example.com).",
     );
 
     const response = await singleHandler(new Request("http://localhost"), {

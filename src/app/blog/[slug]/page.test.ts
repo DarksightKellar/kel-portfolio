@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import * as fs from "fs";
 import * as path from "path";
@@ -22,16 +23,16 @@ function writePost(slug: string, title: string, date: string, body: string) {
 }
 
 describe("generateStaticParams", () => {
-  it("returns an empty array when no posts exist", () => {
-    const params = generateStaticParams();
+  it("returns an empty array when no posts exist", async () => {
+    const params = await generateStaticParams();
     expect(params).toEqual([]);
   });
 
-  it("returns a slug for each blog post", () => {
+  it("returns a slug for each blog post", async () => {
     writePost("first-post", "First", "2025-01-15", "Content one.");
     writePost("second-post", "Second", "2025-03-20", "Content two.");
 
-    const params = generateStaticParams();
+    const params = await generateStaticParams();
 
     expect(params).toHaveLength(2);
     expect(params).toEqual(
