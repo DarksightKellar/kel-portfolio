@@ -1,10 +1,31 @@
-// @vitest-environment node
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import * as fs from "fs";
 import * as path from "path";
 import * as os from "os";
 import { GET as listHandler } from "./route";
 import { GET as singleHandler } from "../post/[slug]/route";
+
+function collectRouteFiles(dir: string): string[] {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const files: string[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      files.push(...collectRouteFiles(fullPath));
+    } else if (entry.name === "route.ts") {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
+function apiRoutePath(filePath: string): string {
+  const relative = path.relative(path.join(process.cwd(), "src", "app"), filePath);
+  return `/${relative.replace(/\\/g, "/").replace(/\/route\.ts$/, "")}`;
+}
 
 let testDir: string;
 let originalEnv: string | undefined;
@@ -16,7 +37,12 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  process.env.BLOG_CONTENT_DIR = originalEnv;
+  if (originalEnv === undefined) {
+    delete process.env.BLOG_CONTENT_DIR;
+  } else {
+    process.env.BLOG_CONTENT_DIR = originalEnv;
+  }
+
   fs.rmSync(testDir, { recursive: true, force: true });
 });
 
@@ -31,7 +57,7 @@ function writePost(slug: string, frontmatter: Record<string, string>, body: stri
   fs.writeFileSync(path.join(testDir, `${slug}.md`), lines.join("\n"));
 }
 
-describe("GET /api/blog", () => {
+describe("GET /api/posts", () => {
   it("returns 200 OK with an empty posts array when no posts exist", async () => {
     const response = await listHandler();
     const body = await response.json();
@@ -69,7 +95,7 @@ describe("GET /api/blog", () => {
   });
 });
 
-describe("GET /api/blog/[slug]", () => {
+describe("GET /api/post/[slug]", () => {
   it("returns 404 when slug does not match any post", async () => {
     const response = await singleHandler(new Request("http://localhost"), {
       params: Promise.resolve({ slug: "nonexistent" }),
@@ -98,5 +124,20 @@ describe("GET /api/blog/[slug]", () => {
     expect(body.post.date).toBe("2025-04-20");
     expect(body.post.content).toContain("<strong>bold</strong>");
     expect(body.post.content).toContain('<a href="https://example.com">link</a>');
+  });
+});
+
+describe("static export API routes", () => {
+  it("does not define a route handler as both a concrete path and a parent path", () => {
+    const routes = collectRouteFiles(path.join(process.cwd(), "src", "app", "api"))
+      .map(apiRoutePath)
+      .sort();
+    const conflicts = routes.flatMap((route) =>
+      routes
+        .filter((candidate) => candidate !== route && candidate.startsWith(`${route}/`))
+        .map((child) => `${route} conflicts with ${child}`),
+    );
+
+    expect(conflicts).toEqual([]);
   });
 });

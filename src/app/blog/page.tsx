@@ -1,4 +1,3 @@
-import * as path from "path";
 import Link from "next/link";
 import { CalendarDays } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
@@ -6,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
-const DEFAULT_CONTENT_DIR = path.join(process.cwd(), "content", "blog");
+const DEFAULT_CONTENT_DIR = `${process.cwd()}/content/blog`;
 
 function getContentDir(): string {
   return process.env.BLOG_CONTENT_DIR || DEFAULT_CONTENT_DIR;
@@ -40,10 +39,7 @@ export default async function BlogPage() {
             {posts.map((post) => (
               <li key={post.slug}>
                 <article className="rounded-2xl border border-zinc-200 bg-white/70 p-6 transition hover:border-zinc-300 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-white/15">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group block"
-                  >
+                  <Link href={`/blog/${post.slug}`} className="group block">
                     <h2 className="text-xl font-semibold tracking-tight text-zinc-950 transition group-hover:text-zinc-700 dark:text-white dark:group-hover:text-white/80">
                       {post.title}
                     </h2>

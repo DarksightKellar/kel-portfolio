@@ -1,4 +1,3 @@
-// @vitest-environment node
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import * as fs from "fs";
 import * as path from "path";
@@ -117,11 +116,56 @@ describe("getPostBySlug", () => {
     expect(post!.excerpt).toBeDefined();
   });
 
+  it("escapes raw HTML in markdown content", async () => {
+    writePost(
+      "unsafe-post",
+      { title: "Unsafe Post", date: "2025-04-02" },
+      "This paragraph includes <script>alert('xss')</script> markup.",
+    );
+
+    const post = await getPostBySlug(testDir, "unsafe-post");
+
+    expect(post).not.toBeNull();
+    expect(post!.content).not.toContain("<script>");
+    expect(post!.content).toContain("&#x3C;script>alert('xss')&#x3C;/script>");
+  });
+
+  it("does not create links for dangerous href protocols", async () => {
+    writePost(
+      "dangerous-link-post",
+      { title: "Dangerous Link Post", date: "2025-04-03" },
+      "This post has a [bad link](javascript:alert(1)).",
+    );
+
+    const post = await getPostBySlug(testDir, "dangerous-link-post");
+
+    expect(post).not.toBeNull();
+    expect(post!.content).not.toContain('href="javascript:alert(1)"');
+    expect(post!.content).toContain("bad link");
+  });
+
   it("returns null when slug does not match any file", async () => {
     writePost("real-post", { title: "Real", date: "2025-01-01" }, "Content.");
 
     const post = await getPostBySlug(testDir, "other-slug");
 
     expect(post).toBeNull();
+  });
+
+  it("rejects slugs that could traverse outside the content directory", async () => {
+    const secretSlug = `${path.basename(testDir)}-secret`;
+    const secretPath = path.join(path.dirname(testDir), `${secretSlug}.md`);
+    fs.writeFileSync(
+      secretPath,
+      "---\ntitle: Secret\ndate: 2025-01-01\n---\n\nOutside content.",
+    );
+
+    try {
+      const post = await getPostBySlug(testDir, `../${secretSlug}`);
+
+      expect(post).toBeNull();
+    } finally {
+      fs.rmSync(secretPath, { force: true });
+    }
   });
 });

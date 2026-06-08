@@ -15,7 +15,7 @@ export default function BlogPost({ post }: { post: BlogPostType }) {
         <h1 className="mb-3 text-3xl font-bold tracking-tight text-zinc-950 dark:text-white">
           {post.title}
         </h1>
-        <time className="text-sm text-zinc-500 dark:text-white/40">
+        <time className="text-sm text-zinc-500 dark:text-white/40" dateTime={post.date}>
           {post.date}
         </time>
       </header>

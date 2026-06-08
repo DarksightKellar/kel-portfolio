@@ -26,6 +26,12 @@ describe("BlogPost", () => {
     expect(screen.getByText("2025-05-21")).toBeInTheDocument();
   });
 
+  it("adds a semantic datetime attribute to the time element", () => {
+    render(<BlogPost post={samplePost} />);
+
+    expect(screen.getByText("2025-05-21")).toHaveAttribute("dateTime", "2025-05-21");
+  });
+
   it("renders the post content as HTML", () => {
     render(<BlogPost post={samplePost} />);
 

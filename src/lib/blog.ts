@@ -20,6 +20,18 @@ export type BlogPostSummary = {
   excerpt: string;
 };
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;");
+}
+
+function isValidSlug(slug: string): boolean {
+  return /^[a-z0-9-]+$/.test(slug);
+}
+
 function stripMarkdown(text: string): string {
   return text
     // Headers
@@ -53,7 +65,11 @@ function extractExcerpt(body: string): string {
 }
 
 async function markdownToHtml(md: string): Promise<string> {
-  const result = await remark().use(remarkParse).use(remarkHtml).process(md);
+  const sanitizedMarkdown = escapeHtml(md);
+  const result = await remark()
+    .use(remarkParse)
+    .use(remarkHtml, { sanitize: true })
+    .process(sanitizedMarkdown);
   return result.toString();
 }
 
@@ -116,6 +132,8 @@ export async function getPostBySlug(
   contentDir: string,
   slug: string,
 ): Promise<BlogPost | null> {
+  if (!isValidSlug(slug)) return null;
+
   const filePath = path.join(contentDir, `${slug}.md`);
 
   if (!fs.existsSync(filePath)) return null;

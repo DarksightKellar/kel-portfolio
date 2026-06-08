@@ -7,7 +7,6 @@ export default defineConfig({
     tsconfigPaths: true,
   },
   test: {
-    environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
     globals: true,
     env: {
@@ -18,5 +17,24 @@ export default defineConfig({
         inline: ["gray-matter", "remark", "remark-parse", "remark-html", "unified"],
       },
     },
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: "jsdom",
+          environment: "jsdom",
+          include: ["src/**/*.test.{ts,tsx}"],
+          exclude: ["src/**/*.node.test.{ts,tsx}"],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: "node",
+          environment: "node",
+          include: ["src/**/*.node.test.{ts,tsx}"],
+        },
+      },
+    ],
   },
 });

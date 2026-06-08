@@ -7,7 +7,7 @@ import { useRef } from "react";
 const situations = [
   {
     icon: DraftingCompass,
-    title: "A product is still mostly in someone's head",
+    title: "A product is still mostly in someone’s head",
     body: "I can pull out the real workflow, name the decisions, cut the vague parts down to scope, and turn the first usable slice into software.",
   },
   {
@@ -36,7 +36,7 @@ export default function FitHighlights() {
           className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end"
         >
           <div>
-            <p className="mb-4 text-sm uppercase tracking-[0.24em] text-zinc-500 dark:text-white/40">When I'm the right person</p>
+            <p className="mb-4 text-sm uppercase tracking-[0.24em] text-zinc-500 dark:text-white/40">When I’m the right person</p>
             <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white md:text-5xl">The useful cases are messy before they are obvious.</h2>
           </div>
           <p className="max-w-2xl text-base leading-7 text-zinc-700 dark:text-white/55">

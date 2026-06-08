@@ -114,8 +114,8 @@ describe("portfolio copy audit", () => {
     const fit = readSource("src/components/FitHighlights.tsx");
 
     expect(page).toContain("<FitHighlights />");
-    expect(fit).toContain("When I'm the right person");
-    expect(fit).toContain("A product is still mostly in someone's head");
+    expect(fit).toContain("When I’m the right person");
+    expect(fit).toContain("A product is still mostly in someone’s head");
     expect(fit).toContain("A bug is real, expensive, and hard to reproduce");
     expect(fit).toContain("A workflow has grown around spreadsheets, Slack threads, and tribal knowledge");
   });
