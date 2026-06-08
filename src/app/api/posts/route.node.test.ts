@@ -15,7 +15,12 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  process.env.BLOG_CONTENT_DIR = originalEnv;
+  if (originalEnv === undefined) {
+    delete process.env.BLOG_CONTENT_DIR;
+  } else {
+    process.env.BLOG_CONTENT_DIR = originalEnv;
+  }
+
   fs.rmSync(testDir, { recursive: true, force: true });
 });
 
