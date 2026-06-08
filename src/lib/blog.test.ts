@@ -116,6 +116,34 @@ describe("getPostBySlug", () => {
     expect(post!.excerpt).toBeDefined();
   });
 
+  it("escapes raw HTML in markdown content", () => {
+    writePost(
+      "unsafe-post",
+      { title: "Unsafe Post", date: "2025-04-02" },
+      "This paragraph includes <script>alert('xss')</script> markup."
+    );
+
+    const post = getPostBySlug(testDir, "unsafe-post");
+
+    expect(post).not.toBeNull();
+    expect(post!.content).not.toContain("<script>");
+    expect(post!.content).toContain("&lt;script&gt;alert('xss')&lt;/script&gt;");
+  });
+
+  it("does not create links for dangerous href protocols", () => {
+    writePost(
+      "dangerous-link-post",
+      { title: "Dangerous Link Post", date: "2025-04-03" },
+      "This post has a [bad link](javascript:alert(1))."
+    );
+
+    const post = getPostBySlug(testDir, "dangerous-link-post");
+
+    expect(post).not.toBeNull();
+    expect(post!.content).not.toContain('href="javascript:alert(1)"');
+    expect(post!.content).toContain("bad link");
+  });
+
   it("returns null when slug does not match any file", () => {
     writePost("real-post", { title: "Real", date: "2025-01-01" }, "Content.");
 

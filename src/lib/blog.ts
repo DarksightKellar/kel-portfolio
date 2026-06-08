@@ -40,14 +40,37 @@ function parseFrontmatter(raw: string): { data: Record<string, string>; body: st
   return { data, body };
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;");
+}
+
+function isSafeHref(href: string): boolean {
+  const trimmed = href.trim();
+
+  return (
+    /^(https?:|mailto:|tel:)/i.test(trimmed) ||
+    /^(\/|\.\/|\.\.\/|#)/.test(trimmed)
+  );
+}
+
 function markdownToHtml(md: string): string {
-  let html = md;
+  let html = escapeHtml(md);
 
   // Bold
   html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 
   // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, text, href) => {
+    if (!isSafeHref(href)) {
+      return text;
+    }
+
+    return `<a href="${escapeHtml(href)}">${text}</a>`;
+  });
 
   // Paragraphs: split on blank lines, wrap non-empty chunks in <p>
   const paragraphs = html.split(/\n\n+/);
